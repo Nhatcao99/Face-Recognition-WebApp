@@ -3,11 +3,11 @@
 
 from flask import Flask, render_template, request,Response
 import os
-from werkzeug import secure_filename
+# from werkzeug.utils import secure_filename
 import recog
-from client4 import Vidcamera
-from own_pc import Vidcamera1
-import video_recog1
+# from client4 import Vidcamera
+# from own_pc import Vidcamera1
+# import video_recog1
 
 app = Flask(__name__)
 
@@ -39,47 +39,6 @@ def upload_file():
       return render_template('image_load.html',ident=name)
       #return 'file uploaded successfully'
 
-### Remote camera processing
-
-@app.route('/video')
-def index():
-    return render_template('index.html')
-
-def gen(camera):
-    print('gen camera method')
-    while True:
-        frame = camera.framing()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-    print('end of gen camera method')
-
-@app.route('/video_feed')
-def video_feed():
-    print('video_feed method')
-    aa=gen(Vidcamera())
-    print('video_feed method 2')
-    return Response(aa,mimetype='multipart/x-mixed-replace; boundary=frame')
-
-
-## for own computer camera processing
-@app.route('/video_1')
-def index_1():
-    return render_template('index_1.html')
-
-def gen_1(camera):
-    print('gen camera method')
-    while True:
-        frame = camera.framing()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-    print('end of gen camera method')
-
-@app.route('/video_feed_1')
-def video_feed_1():
-    print('video_feed method')
-    aa=gen_1(Vidcamera1())
-    print('video_feed method 2')
-    return Response(aa,mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
    app.run(host= '0.0.0.0', debug = True)
