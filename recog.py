@@ -5,8 +5,7 @@ import pickle
 import cv2
 from PIL import Image
 import os
-import sys
-import numpy as np
+
 
 def identify_face():
         Out_fold = r'C:\Users\gurvinder1.singh\Downloads\Facial-Similarity-with-Siamese-Networks-in-Pytorch-master\data\output_fold'
