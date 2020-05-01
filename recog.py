@@ -5,11 +5,13 @@ import pickle
 import cv2
 from PIL import Image
 import os
+from skimage import io
 
 
 def identify_face():
-        Out_fold = r'C:\Users\gurvinder1.singh\Downloads\Facial-Similarity-with-Siamese-Networks-in-Pytorch-master\data\output_fold'
 
+        # Out_fold = r'C:\Users\gurvinder1.singh\Downloads\Facial-Similarity-with-Siamese-Networks-in-Pytorch-master\data\output_fold'
+        Out_fold = r'/Users/nhatcao/Face-Recognition-WebApp/out_folder'
         # load the known faces and embeddings
         print("[INFO] loading encodings...")
         data = pickle.loads(open("encodings.pickle", "rb").read())
@@ -19,8 +21,10 @@ def identify_face():
         
         # load the input image and convert it from BGR to RGB
         ##/home/aiml/ml/share/data/face_recog/examples
-        image = cv2.imread(r"C:\Users\gurvinder1.singh\Downloads\Facial-Similarity-with-Siamese-Networks-in-Pytorch-master\data\input_fold\inp.jpg")
+        image = io.imread(r"/Users/nhatcao/Face-Recognition-WebApp/input_folder/inp.png")
+        # image = cv2.imread(r"\input_folder\inp.png")
         rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
          
         # detect the (x, y)-coordinates of the bounding boxes corresponding
         # to each face in the input image, then compute the facial embeddings
@@ -79,13 +83,13 @@ def identify_face():
          
         # show the output image
         result = Image.fromarray(image)
-        result.save(os.path.join(Out_fold, 'out.jpg'))
+        result.save(os.path.join(Out_fold, 'out.png'))
         return names
         print('file saved..')
 
-def main(argv):
-    print(identify_face(*argv[1:]))
-
-if __name__ == "__main__":
-    import sys
-    main(sys.argv)
+# def main(argv):
+#     print(identify_face(*argv[1:]))
+#
+# if __name__ == "__main__":
+#     import sys
+#     main(sys.argv)

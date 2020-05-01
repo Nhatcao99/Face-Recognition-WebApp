@@ -44,7 +44,7 @@ function readURL(input) {
 <div class="abc" align="left">
 <h1><strong>Image Recognition WebApp</strong></h1>
 </br></br>
-<form action = "http://ip-address:5000/uploader" method = "POST" enctype = "multipart/form-data">
+<form action = "http://127.0.0.1:5000/uploader" method = "POST" enctype = "multipart/form-data">
 <div class="form-group">
   <input type='file' name = "file" onchange="readURL(this);" />
     <img id="blah" src="#" alt="your image" />
@@ -54,7 +54,7 @@ function readURL(input) {
 	<input type="submit" class="btn btn-info" value="Submit">
 </form>
 </br>
-<form action = "http://ip-address:5000/" method = "GET">
+<form action = "http://127.0.0.1:5000/" method = "GET">
 	<input type="submit" class="btn btn-info" value="Go back!">
 </form>
 

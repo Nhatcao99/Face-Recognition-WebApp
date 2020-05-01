@@ -8,8 +8,8 @@ import recog
 app = Flask(__name__)
 #NOTE:This one have yet nothing to do with pathing issue it is just configue for input and output image, work on it later
 #this have something to do with the file recog.py
-app.config['UPLOAD_FOLDER'] = r'C:\Users\gurvinder1.singh\Downloads\Facial-Similarity-with-Siamese-Networks-in-Pytorch-master\data\input_fold'
-app.config['OUTPUT_FOLDER'] = r'C:\Users\gurvinder1.singh\Downloads\Facial-Similarity-with-Siamese-Networks-in-Pytorch-master\data\output_fold'
+app.config['UPLOAD_FOLDER'] = r'/Users/nhatcao/Face-Recognition-WebApp/input_folder' #image will be pass into this folder
+app.config['OUTPUT_FOLDER'] = r'/Users/nhatcao/Face-Recognition-WebApp/out_folder'
 
 ### front page
 @app.route('/')
@@ -29,7 +29,7 @@ def main_page():
 def upload_file():
    if request.method == 'POST':
       f = request.files['file']
-      f.save(os.path.join(app.config['UPLOAD_FOLDER'], 'inp.jpg'))
+      f.save(os.path.join(app.config['UPLOAD_FOLDER'], 'inp.png')) #where it names image inp.png
       #name = os.system("python recog.py")
       name = recog.identify_face()
       print(name)
@@ -41,4 +41,5 @@ def upload_file():
 
 
 if __name__ == '__main__':
-   app.run(host= '0.0.0.0', debug = True)
+   app.run(debug=True)
+   # app.run(host= '0.0.0.0', debug = True)
