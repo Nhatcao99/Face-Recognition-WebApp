@@ -11,6 +11,7 @@ from skimage import io
 def identify_face():
 
         # Out_fold = r'C:\Users\gurvinder1.singh\Downloads\Facial-Similarity-with-Siamese-Networks-in-Pytorch-master\data\output_fold'
+
         Out_fold = r'/Users/nhatcao/Face-Recognition-WebApp/out_folder'
         # load the known faces and embeddings
         print("[INFO] loading encodings...")
@@ -21,6 +22,7 @@ def identify_face():
         
         # load the input image and convert it from BGR to RGB
         ##/home/aiml/ml/share/data/face_recog/examples
+
         image = io.imread(r"/Users/nhatcao/Face-Recognition-WebApp/input_folder/inp.png")
         # image = cv2.imread(r"\input_folder\inp.png")
         rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -83,6 +85,8 @@ def identify_face():
          
         # show the output image
         result = Image.fromarray(image)
+        #TODO: this successfully save output image to the Out_fold path in main.py
+        # the original code use "jpg" but this code doesn't seem working with "jpg" and will return error
         result.save(os.path.join(Out_fold, 'out.png'))
         return names
         print('file saved..')
